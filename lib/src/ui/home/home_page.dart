@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       body: new Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(90.0),
+            padding: EdgeInsets.all(180.0),
             child: new Text('登入成功!'),
           ),
         ],

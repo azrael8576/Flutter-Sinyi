@@ -3,11 +3,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:basic_utils/basic_utils.dart';
+import 'package:logger/logger.dart';
 
-import '../../main.dart';
 import 'app_exceptions.dart';
 
-String TAG = "ApiBaseHelper";
+var logger = Logger(
+  printer: PrettyPrinter(
+      methodCount: 0, colors: false, prefix: true, lineLength: 180),
+);
 
 class ApiBaseHelper {
   static int _mTimeout = 120;
@@ -24,12 +27,12 @@ class ApiBaseHelper {
           .timeout(Duration(seconds: _mTimeout));
       responseJson = _returnResponse(response, action);
     } on SocketException {
-      logger.w(TAG, action + " 連線異常(逾時或無法連線)");
+      logger.w(action + " 連線異常(逾時或無法連線)");
       throw FetchDataException('No Internet connection');
     } on TimeoutException {
-      logger.w(TAG, action + " 連線異常(逾時或無法連線)");
+      logger.w(action + " 連線異常(逾時或無法連線)");
     } on Exception {
-      logger.w(TAG, action + " 發生例外錯誤");
+      logger.w(action + " 發生例外錯誤");
     }
     print('api get recieved!');
     return responseJson;
@@ -42,18 +45,18 @@ class ApiBaseHelper {
     print('Api Post, url $url');
     var responseJson;
     try {
-      logger.d(TAG, action + " post param: " + jsonEncode(params));
+      logger.d(action + " post param: " + jsonEncode(params));
       final response = await HttpUtils.postForFullResponse(url + action, body: jsonEncode(params), queryParameters: null, headers: header)
           .timeout(Duration(seconds: _mTimeout));
 
       responseJson = _returnResponse(response, action);
     } on SocketException {
-      logger.w(TAG, action + " 連線異常(逾時或無法連線)");
+      logger.w(action + " 連線異常(逾時或無法連線)");
       throw FetchDataException('No Internet connection');
     } on TimeoutException {
-      logger.w(TAG, action + " 連線異常(逾時或無法連線)");
+      logger.w(action + " 連線異常(逾時或無法連線)");
     } on Exception {
-      logger.w(TAG, action + " 發生例外錯誤");
+      logger.w(action + " 發生例外錯誤");
     }
     print('api post.');
     return responseJson;
@@ -67,12 +70,12 @@ class ApiBaseHelper {
           .timeout(Duration(seconds: _mTimeout));
       responseJson = _returnResponse(response, action);
     } on SocketException {
-      logger.w(TAG, action + " 連線異常(逾時或無法連線)");
+      logger.w(action + " 連線異常(逾時或無法連線)");
       throw FetchDataException('No Internet connection');
     } on TimeoutException {
-      logger.w(TAG, action + " 連線異常(逾時或無法連線)");
+      logger.w(action + " 連線異常(逾時或無法連線)");
     } on Exception {
-      logger.w(TAG, action + " 發生例外錯誤");
+      logger.w(action + " 發生例外錯誤");
     }
     print('api put.');
     print(responseJson.toString());
@@ -87,10 +90,10 @@ class ApiBaseHelper {
           .timeout(Duration(seconds: _mTimeout));
       apiResponse = _returnResponse(response, action);
     } on SocketException {
-      logger.w(TAG, action + " 連線異常(逾時或無法連線)");
+      logger.w(action + " 連線異常(逾時或無法連線)");
       throw FetchDataException('No Internet connection');
     } on TimeoutException {
-      logger.w(TAG, action + " 連線異常(逾時或無法連線)");
+      logger.w(action + " 連線異常(逾時或無法連線)");
     } on Exception {
       logger.w("ApiBaseHelper " + action + " 發生例外錯誤");
     }
@@ -103,7 +106,7 @@ dynamic _returnResponse(http.Response response, String action) {
   switch (response.statusCode) {
     case 200:
       var responseJson = json.decode(response.body.toString());
-      logger.d(TAG, action + " request body: " + response.body.toString());
+      logger.d(action + " request body: " + response.body.toString());
       return responseJson;
     case 400:
       throw BadRequestException(response.body.toString());

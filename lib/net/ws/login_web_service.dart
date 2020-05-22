@@ -1,7 +1,5 @@
 import 'dart:collection';
 
-import 'package:fluttersinyi/main.dart';
-
 import '../api_base_helper.dart';
 import 'abstract_web_service.dart';
 
@@ -48,8 +46,8 @@ class LoginWebService extends AbstractWebService {
   GetAuthToken(String UserID, String PWD, String UUID, String OSVer,
       String ApVer, String ApName, String MobileId, String PnToken) async {
 
-    logger.i(TAG, "GetAuthToken: UserID:" + UserID);
-    logger.i(TAG, "GetAuthToken: PWD:" + PWD);
+    logger.i(TAG, "GetAuthToken: UserID:" + UserID + "\n"
+        "GetAuthToken: PWD:" + PWD);
     HashMap<String, String> data = new HashMap<String, String>();
     data.addAll({
       "UserID" : UserID,
