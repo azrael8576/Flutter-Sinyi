@@ -4,7 +4,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttersinyi/src/blocs/token_bloc.dart';
 
-import '../../main.dart';
+import '../../../main.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -30,13 +30,13 @@ class LoginPageState extends State<LoginPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           var isLogin = await tokenBloc.login();
-          setState(() {
-            if (isLogin) {
-              loginText = tokenBloc.tokenBean.UserID;
-            } else {
+          if (isLogin) {
+            Navigator.pushReplacementNamed(context, "/home");
+          } else {
+            setState(() {
               loginText = tokenBloc.responseErrDesc;
-            }
-          });
+            });
+          }
         },
         child: Icon(Icons.add),
       ),
