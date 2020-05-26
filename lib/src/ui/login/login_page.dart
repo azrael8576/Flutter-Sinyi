@@ -8,9 +8,6 @@ import 'package:fluttersinyi/src/ui/widgets/button_widget.dart';
 import 'package:fluttersinyi/src/ui/widgets/textfield_widget.dart';
 import 'package:fluttersinyi/src/ui/widgets/wave_widget.dart';
 
-import '../../../main.dart';
-import 'bloc/login_bloc.dart';
-
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => LoginPageState();
@@ -20,7 +17,6 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final TokenBloc tokenBloc = BlocProvider.getBloc<TokenBloc>();
-    final LoginBloc loginBloc = BlocProvider.getBloc<LoginBloc>();
     final size = MediaQuery.of(context).size;
     final bool keyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
 
@@ -47,7 +43,13 @@ class LoginPageState extends State<LoginPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('Login', style: TextStyle(color: Global.white, fontSize: 40.0, fontWeight: FontWeight.w900),),
+                Text(
+                  'Login',
+                  style: TextStyle(
+                      color: Global.white,
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.w900),
+                ),
               ],
             ),
           ),
@@ -59,15 +61,28 @@ class LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 25.0,
                 ),
-                Consumer<LoginBloc>(
-                  builder: (BuildContext context, LoginBloc bloc) {
+                Center(
+                  child: Text(
+                    //TODO
+                    '顯示錯誤訊息',
+                    style: TextStyle(
+                      color: Global.mediumBlue,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Consumer<TokenBloc>(
+                  builder: (BuildContext context, TokenBloc bloc) {
                     return TextFieldWidget(
                       hintText: 'Email',
                       obscureText: false,
                       prefixIconData: Icons.mail_outline,
                       suffixIconData: bloc.isValid ? Icons.check : null,
                       onChange: (value) {
-                        loginBloc.isValidEmail(value);
+                        bloc.isValidEmail(value);
                       },
                     );
                   },
@@ -78,8 +93,8 @@ class LoginPageState extends State<LoginPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
-                    Consumer<LoginBloc>(
-                        builder: (BuildContext context, LoginBloc bloc) {
+                    Consumer<TokenBloc>(
+                        builder: (BuildContext context, TokenBloc bloc) {
                       return TextFieldWidget(
                         hintText: 'Password',
                         obscureText: bloc.isVisible,
@@ -87,6 +102,9 @@ class LoginPageState extends State<LoginPage> {
                         suffixIconData: bloc.isVisible
                             ? Icons.visibility
                             : Icons.visibility_off,
+                        onChange: (value) {
+                          bloc.password = value;
+                        },
                       );
                     }),
                     SizedBox(
@@ -105,6 +123,12 @@ class LoginPageState extends State<LoginPage> {
                 ),
                 ButtonWidget(
                   title: 'Login',
+                  onTap: () async {
+                    var loginStatus = await tokenBloc.login();
+                    if (loginStatus == true) {
+                      Navigator.pushNamed(context, '/home');
+                    }
+                  },
                   hasBorder: false,
                 ),
                 SizedBox(
