@@ -2,13 +2,17 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttersinyi/src/blocs/token_bloc.dart';
 import 'package:fluttersinyi/src/ui/home/home_page.dart';
+import 'package:fluttersinyi/src/ui/login/bloc/login_bloc.dart';
 import 'package:fluttersinyi/src/ui/login/login_page.dart';
 
 class Routes {
   Routes() {
     runApp(
       BlocProvider(
-        blocs: [Bloc((i) => TokenBloc())],
+        blocs: [
+          Bloc((i) => TokenBloc()),
+          Bloc((i) => (LoginBloc())),
+        ],
         child: (MaterialApp(
           debugShowCheckedModeBanner: false,
           title: "Sinyi Demo",
