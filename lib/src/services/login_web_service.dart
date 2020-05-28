@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import '../api_base_helper.dart';
+import 'api_base_helper.dart';
 import 'abstract_web_service.dart';
 
 class LoginWebService extends AbstractWebService {

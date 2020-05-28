@@ -1,7 +1,7 @@
 import 'dart:math' as Math;
 
 import 'package:flutter/material.dart';
-import 'package:fluttersinyi/src/ui/widgets/clipper_widget.dart';
+import 'package:fluttersinyi/src/components/clipper_widget.dart';
 
 class WaveWidget extends StatefulWidget {
   final Size size;

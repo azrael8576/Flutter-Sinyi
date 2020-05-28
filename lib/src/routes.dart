@@ -1,8 +1,9 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttersinyi/src/blocs/token_bloc.dart';
-import 'package:fluttersinyi/src/ui/home/home_page.dart';
-import 'package:fluttersinyi/src/ui/login/login_page.dart';
+import 'package:fluttersinyi/src/screens/home/home_page.dart';
+import 'package:fluttersinyi/src/screens/login/login_page.dart';
+
 
 class Routes {
   Routes() {

@@ -1,7 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttersinyi/src/blocs/token_bloc.dart';
-import 'package:fluttersinyi/src/common/globals.dart';
+import 'package:fluttersinyi/src/screens/login/login_page-bloc.dart';
+import 'package:fluttersinyi/src/theme/style.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String hintText;
@@ -21,7 +21,7 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TokenBloc tokenBloc = BlocProvider.getBloc<TokenBloc>();
+    final LoginPageBloc loginPageBloc = BlocProvider.getBloc<LoginPageBloc>();
 
     return TextField(
       onChanged: onChange,
@@ -40,7 +40,7 @@ class TextFieldWidget extends StatelessWidget {
         ),
         suffixIcon: GestureDetector(
           onTap: () {
-            tokenBloc.isVisible = !tokenBloc.isVisible;
+            loginPageBloc.isVisible = !loginPageBloc.isVisible;
           },
           child: Icon(
             suffixIconData,

@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'token_bean.dart';
+part of 'token_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TokenBean _$TokenBeanFromJson(Map<String, dynamic> json) {
-  return TokenBean(
+TokenModel _$TokenModelFromJson(Map<String, dynamic> json) {
+  return TokenModel(
     json['GKey'] as String,
     json['UserID'] as String,
     json['UserName'] as String,
@@ -29,7 +29,7 @@ TokenBean _$TokenBeanFromJson(Map<String, dynamic> json) {
   )..Password = json['Password'] as String;
 }
 
-Map<String, dynamic> _$TokenBeanToJson(TokenBean instance) => <String, dynamic>{
+Map<String, dynamic> _$TokenModelToJson(TokenModel instance) => <String, dynamic>{
       'GKey': instance.GKey,
       'UserID': instance.UserID,
       'UserName': instance.UserName,

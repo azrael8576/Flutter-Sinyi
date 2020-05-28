@@ -1,9 +1,7 @@
-import 'dart:convert';
-
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttersinyi/src/blocs/token_bloc.dart';
-import 'package:fluttersinyi/src/common/globals.dart';
+import 'package:fluttersinyi/src/theme/style.dart';
 
 class HomePage extends StatelessWidget {
   TokenBloc tokenBloc;

@@ -1,6 +1,7 @@
+import 'package:fluttersinyi/src/model/base_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'token_bean.g.dart';
+part 'token_model.g.dart';
 ///{
 //"Status":"1",
 //"ErrDesc":"",
@@ -26,8 +27,8 @@ part 'token_bean.g.dart';
 //	}
 //}
 @JsonSerializable()
-class TokenBean {
-  TokenBean(this.GKey , this.UserID, this.UserName, this.UserPhone,
+class TokenModel extends BaseModel {
+  TokenModel(this.GKey , this.UserID, this.UserName, this.UserPhone,
       this.DeptID, this.DeptZip, this.DeptName, this.DeptLat,
       this.DeptLng, this.DeptType, this.JobID, this.JobName,
       this.JobTitle, this.DebugModel, this.UpperDeptID, this.UpperDeptName,
@@ -55,7 +56,7 @@ class TokenBean {
 
   String Password;
 
-  factory TokenBean.fromJson(Map<String, dynamic> json) => _$TokenBeanFromJson(json);
+  factory TokenModel.fromJson(Map<String, dynamic> json) => _$TokenModelFromJson(json);
 
-  Map<String, dynamic>toJson() => _$TokenBeanToJson(this);
+  Map<String, dynamic>toJson() => _$TokenModelToJson(this);
 }

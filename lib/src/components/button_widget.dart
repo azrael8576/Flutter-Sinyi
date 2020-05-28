@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttersinyi/src/common/globals.dart';
+import 'package:fluttersinyi/src/theme/style.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String title;
