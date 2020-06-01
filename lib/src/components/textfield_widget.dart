@@ -1,4 +1,3 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttersinyi/src/screens/login/login_page-bloc.dart';
 import 'package:fluttersinyi/src/theme/style.dart';
@@ -9,20 +8,20 @@ class TextFieldWidget extends StatelessWidget {
   final IconData suffixIconData;
   final bool obscureText;
   final Function onChange;
+  final LoginPageBloc loginPageBloc;
 
-  const TextFieldWidget(
-      {Key key,
-      this.hintText,
-      this.prefixIconData,
-      this.suffixIconData,
-      this.obscureText,
-      this.onChange})
-      : super(key: key);
+  const TextFieldWidget({
+    Key key,
+    this.hintText,
+    this.prefixIconData,
+    this.suffixIconData,
+    this.obscureText,
+    this.onChange,
+    this.loginPageBloc,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final LoginPageBloc loginPageBloc = BlocProvider.getBloc<LoginPageBloc>();
-
     return TextField(
       onChanged: onChange,
       obscureText: obscureText,
