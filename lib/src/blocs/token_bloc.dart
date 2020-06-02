@@ -1,9 +1,10 @@
-import 'package:fluttersinyi/src/blocs/base.dart';
 import 'package:fluttersinyi/src/services/app_exceptions.dart';
 import 'package:fluttersinyi/src/model/response_model.dart';
 import 'package:fluttersinyi/src/model/token_model.dart';
 import 'package:fluttersinyi/src/services/login_web_service.dart';
 import 'package:fluttersinyi/src/services/sinyi_api_config.dart';
+
+import '../bloc/bloc.dart';
 
 class TokenBloc extends BaseBloc{
   var _tokenBean;

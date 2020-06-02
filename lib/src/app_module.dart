@@ -1,15 +1,17 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter/widgets.dart';
-import 'package:fluttersinyi/src/screens/login/login_page.dart';
+import 'package:flutter/material.dart';
 
-import 'login_page-bloc.dart';
+import 'app_bloc.dart';
+import 'app_widget.dart';
+import 'blocs/blocs.dart';
 
-class LoginModule extends ModuleWidget {
+class AppModule extends ModuleWidget {
 
   //Inject the blocs
   @override
   List<Bloc<BlocBase>> get blocs => [
-    Bloc((i) => LoginPageBloc()),
+    Bloc((i) => TokenBloc()),
+    Bloc((i) => AppBloc()),
   ];
 
   //Inject the dependencies
@@ -19,8 +21,8 @@ class LoginModule extends ModuleWidget {
 
   //main widget
   @override
-  Widget get view => LoginPage();
+  Widget get view => AppWidget();
 
   //shortcut to pick up dependency injections from this module
-  static Inject get to => Inject<LoginModule>.of();
+  static Inject get to => Inject<AppModule>.of();
 }

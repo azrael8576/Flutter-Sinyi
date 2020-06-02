@@ -1,4 +1,4 @@
-import 'package:fluttersinyi/src/blocs/base.dart';
+import 'package:fluttersinyi/src/bloc/bloc.dart';
 import 'package:fluttersinyi/src/theme/style.dart';
 
 class LoginPageBloc extends BaseBloc{
